@@ -12,11 +12,14 @@
     </form>
 
     <ul class="list-group mt-4">
+
+@foreach ($tarefas as $tr)            
+
         <li class="list-group-item d-flex justify-content-between align-items-center">
 
             <div class="d-flex">
-                <input type="checkbox" name="status" class="form-check-input me-2">
-                <span>Nome da Tarefa</span>
+                <input type="checkbox" name="status" class="form-check-input me-2" {{ $tr->status ? 'checked' : '' }}>
+                <span>{{$tr->tarefa}}</span>
             </div>
             <div class="btn-group">
                 <a href="#" class="btn btn-light btn-sm"><i class="fa fa-edit"></i></a>
@@ -25,5 +28,8 @@
                 </form>
             </div>
         </li>
+
+        @endforeach
+
     </ul>
 @endsection

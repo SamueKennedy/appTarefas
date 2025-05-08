@@ -1,10 +1,10 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-
-use App\Models\Tarefa;
+ 
+use App\Models\tarefa;
 use Illuminate\Http\Request;
-
+ 
 class TarefaController extends Controller
 {
     /**
@@ -15,52 +15,49 @@ class TarefaController extends Controller
         $tarefas = Tarefa::all();
         return view('index', compact('tarefas'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+ 
+ 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tarefa' => 'required',
+ 
+        ]);
+ 
+        Tarefa::create([
+            'tarefa' => $request->tarefa,
+            'status' => 0
+        ]);
+ 
+        return redirect()->route('home.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tarefa $tarefa)
-    {
-        //
-    }
-
+ 
+ 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tarefa $tarefa)
+    public function edit(tarefa $tarefa)
     {
-        //
+        return view('editar', compact('tarefa'));
     }
-
+ 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tarefa $tarefa)
+    public function update(Request $request, tarefa $tarefa)
     {
         //
     }
-
+ 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tarefa $tarefa)
+    public function destroy(tarefa $tarefa)
     {
-        //
+        $tarefa->delete();
+        return redirect()->route('home.index');
     }
 }

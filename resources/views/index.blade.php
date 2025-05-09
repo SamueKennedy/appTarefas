@@ -13,7 +13,7 @@
  
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <div class="d-flex">
-            <input type="checkbox" name="status" class="form-check-input me-2" {{ $tr->status ? 'checked' : '' }}>
+            <input type="checkbox" data-id="{{$tr->id}}" name ="status" class="form-check-input me-2 checkbox-tarefa" {{ $tr->status ? 'checked' : '' }}>
             <span>{{ $tr->tarefa }}</span>
         </div>
  
@@ -28,4 +28,5 @@
     </li>
     @endforeach
 </ul>
+
 @endsection
